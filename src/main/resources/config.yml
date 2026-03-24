@@ -1,0 +1,124 @@
+# ╔══════════════════════════════════════════════════════════════╗
+# ║              ScoreboardPL — Configuration File              ║
+# ║                    by Maximilian Hirtzbruch                 ║
+# ╚══════════════════════════════════════════════════════════════╝
+#
+# HOW TO ADD / REMOVE LINES:
+# ─────────────────────────────────────────────────────────────────
+# Add a new line by adding a new entry under "lines:" like this:
+#
+#   lines:
+#     - "&7My new line"
+#     - "%player_name%"
+#
+# Remove a line by deleting its entry.
+# Use "" for an empty spacer line.
+# Lines are displayed TOP → BOTTOM (first entry = top).
+#
+# COLOR CODES: Use & followed by a color code:
+#   &0=Black  &1=Dark Blue  &2=Dark Green  &3=Dark Aqua
+#   &4=Dark Red  &5=Dark Purple  &6=Gold  &7=Gray
+#   &8=Dark Gray  &9=Blue  &a=Green  &b=Aqua
+#   &c=Red  &d=Light Purple  &e=Yellow  &f=White
+#   &l=Bold  &o=Italic  &n=Underline  &m=Strikethrough  &r=Reset
+#
+# ─────────────────────────────────────────────────────────────────
+# AVAILABLE PLACEHOLDERS (25+):
+# ─────────────────────────────────────────────────────────────────
+#
+# ── SERVER ──────────────────────────────────────────────────────
+#  %server_name%          → The server name set below in settings
+#  %server_online%        → Number of currently online players
+#  %server_max_players%   → Max player slots of the server
+#  %server_tps%           → Current server TPS (max 20.0)
+#  %server_version%       → Server Minecraft version (e.g. 1.21.1)
+#
+# ── PLAYER ──────────────────────────────────────────────────────
+#  %player_name%          → Player's username
+#  %player_displayname%   → Player's display name (with prefix/suffix)
+#  %player_health%        → Player's current health (e.g. 20.0)
+#  %player_max_health%    → Player's maximum health (e.g. 20.0)
+#  %player_food%          → Player's food level (0-20)
+#  %player_level%         → Player's XP level
+#  %player_exp%           → Player's XP progress (e.g. 45%)
+#  %player_ping%          → Player's connection ping in ms
+#  %player_world%         → Name of the world the player is in
+#  %player_gamemode%      → Player's current gamemode
+#  %player_x%             → Player's X coordinate
+#  %player_y%             → Player's Y coordinate
+#  %player_z%             → Player's Z coordinate
+#  %player_deaths%        → Total number of times the player died
+#  %player_kills%         → Total number of player kills
+#  %player_blocks_walked% → Total blocks walked (in meters)
+#  %player_playtime_hours%→ Total playtime in hours
+#
+# ── DATE / TIME ─────────────────────────────────────────────────
+#  %time%                 → Current server time (HH:mm:ss)
+#  %date%                 → Current date (dd.MM.yyyy)
+#  %day%                  → Current day of the week (e.g. Monday)
+#
+# ── VAULT (requires Vault + Economy plugin) ─────────────────────
+#  %vault_balance%        → Player's balance with decimals (1,234.50)
+#  %vault_balance_int%    → Player's balance without decimals (1,234)
+#  %vault_rank%           → Player's primary permission group via Vault
+#
+# ── LUCKPERMS (requires LuckPerms) ──────────────────────────────
+#  %luckperms_group%      → Player's primary LuckPerms group
+#  %luckperms_prefix%     → Player's LuckPerms prefix
+#  %luckperms_suffix%     → Player's LuckPerms suffix
+#
+# ─────────────────────────────────────────────────────────────────
+
+# ── General Settings ─────────────────────────────────────────────
+settings:
+  # The name of your server (used for %server_name%)
+  server-name: "My Server"
+
+  # How often the scoreboard updates (in ticks, 20 ticks = 1 second)
+  # Recommended: 20 (every second) | Minimum: 10
+  update-interval-ticks: 20
+
+  # Timezone for %time%, %date%, %day%
+  # Examples: UTC, Europe/Berlin, America/New_York, Asia/Tokyo
+  timezone: "UTC"
+
+# ── Scoreboard Layout ────────────────────────────────────────────
+scoreboard:
+  # The title shown at the TOP of the scoreboard
+  # Supports color codes and ONE placeholder: %server_name%
+  title: "&6&l%server_name%"
+
+  # Lines of the scoreboard (top to bottom)
+  # Max 15 lines. Use "" for empty spacer lines.
+  lines:
+    - "&8▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬"
+    - " &7Player&8: &f%player_name%"
+    - " &7Rank&8:   &6%luckperms_prefix%%luckperms_group%"
+    - ""
+    - " &7❤ Health&8:  &c%player_health%&8/&c%player_max_health%"
+    - " &7🍗 Food&8:   &e%player_food%&8/&e20"
+    - " &7⭐ Level&8:  &a%player_level% &8(&a%player_exp%&8)"
+    - " &7📶 Ping&8:   &b%player_ping%ms"
+    - ""
+    - " &7💰 Balance&8: &a$%vault_balance_int%"
+    - ""
+    - " &7🌍 World&8:  &7%player_world%"
+    - " &7📍 Pos&8: &7%player_x%&8, &7%player_y%&8, &7%player_z%"
+    - ""
+    - " &7🕐 &f%time%"
+    - " &7📅 &f%date%"
+    - ""
+    - " &7Online&8: &a%server_online%&8/&7%server_max_players%"
+    - " &7TPS&8:    &a%server_tps%"
+    - "&8▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬"
+
+# ── Messages ─────────────────────────────────────────────────────
+messages:
+  # Prefix shown before all plugin messages
+  prefix: "&8[&6ScoreboardPL&8] &r"
+
+  # Message when scoreboard is turned ON with /scoreboard toggle
+  toggle-on: "&aScoreboard &2enabled&a!"
+
+  # Message when scoreboard is turned OFF with /scoreboard toggle
+  toggle-off: "&cScoreboard &4disabled&c!"

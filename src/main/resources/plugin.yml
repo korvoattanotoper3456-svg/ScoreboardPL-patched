@@ -1,0 +1,25 @@
+name: ScoreboardPL
+version: 1.0.1-PAPI
+main: de.maximilian.scoreboardpl.ScoreboardPL
+api-version: 1.21
+author: Maximilian Hirtzbruch
+description: A fully customizable scoreboard plugin with 25+ placeholders + PlaceholderAPI support.
+
+softdepend:
+  - Vault
+  - LuckPerms
+  - PlaceholderAPI
+
+commands:
+  scoreboard:
+    description: Main ScoreboardPL command
+    usage: /scoreboard <toggle|reload>
+    aliases: [sb, sboard]
+
+permissions:
+  scoreboardpl.toggle:
+    description: Allows toggling the scoreboard
+    default: true
+  scoreboardpl.reload:
+    description: Allows reloading the config
+    default: op
